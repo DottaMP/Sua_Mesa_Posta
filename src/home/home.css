@@ -1,0 +1,139 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Bitter', serif;
+}
+
+.main {
+    background: url(../../assets/img/mesa.jpg) no-repeat;
+    background-size: cover;
+    height: 80vh;
+    background-position: 50% 50%;
+    width: auto;
+}
+
+.main h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    font-family: 'Bitter', serif;
+}
+
+.img0 {
+    background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url(../../assets/img/mesa_jantar.jpg);
+    background-size: cover;
+    height: 80vh;
+    width: 100%;
+}
+.img0 h1 {
+    font-family: 'Lobster', cursive;
+}
+
+.btn1 {
+    height: 45px;
+    width: 35%;
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: rgb(248, 26, 92);
+    color: white;
+    font-weight: 700;
+    border-radius: 60px;
+    cursor: pointer;
+}
+
+.btn1:hover {
+    background-color: rgb(187, 10, 63);
+    transition: 0.5s;
+}
+
+.btn {
+    height: 25px;
+    width: 10%;
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: rgb(248, 26, 92);
+    color: white;
+    font-weight: 700;
+    border-radius: 60px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: rgb(187, 10, 63);
+    transition: 0.5s;
+}
+
+.imagem {
+    height: 100px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+h1 {
+    font-weight: 700;
+    font-family: 'Bitter', serif;
+}
+
+h6{
+    font-family: 'Lobster', cursive;
+    font-weight: bold;
+}
+
+.produto {
+    max-width: 100%;
+    width: 295px;
+    height: 195px;
+    object-fit: cover;
+}
+
+.fab {
+    font-size: 2.5rem;
+    cursor: pointer;
+    padding-right:20pt;
+    padding-left:20pt;
+    text-decoration: none;
+    color: rgb(248, 26, 92);
+}
+
+.fa-github:hover {
+    color: #000000;
+    transition: 0.5s;
+}
+
+.fa-linkedin:hover {
+    color: #006394;
+    transition: 0.5s;
+}
+
+.btn2 {
+    height: 46px;
+    width: 100px;
+    background: white;
+    margin-left: -10px;
+    border: 2px solid white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+#txtEmail {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+#txtAssunto {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+@media screen and (max-width:435px){
+    .vermais{
+        height: 55px;
+        width: 50%;
+    }
+}

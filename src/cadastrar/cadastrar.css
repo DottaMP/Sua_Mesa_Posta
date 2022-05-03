@@ -1,0 +1,155 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Bitter', serif;
+}
+
+:root {
+    --primary: rgb(248, 26, 92);
+    --secondary: rgb(248, 26, 92);
+    --dark: rgb(248, 26, 92);
+    --light: #ffffff;
+}
+
+
+.btn00 {
+    height: 40px;
+    width: 30%;
+    outline: none;
+    border: none;
+    background: rgb(248, 26, 92);
+    color: white;
+    border-radius: 60px;
+    font-weight: 700;
+    font-family: 'Bitter', serif;
+    cursor: pointer;
+}
+
+.btn00:hover {
+    background-color: rgb(187, 10, 63);
+    transition: 0.5s;
+}
+
+.btn1 {
+    height: 40px;
+    width: 30%;
+    outline: none;
+    border: none;
+    border: solid 1px rgb(248, 26, 92);
+    background: #FFF;
+    color: rgb(248, 26, 92);
+    border-radius: 60px;
+    font-weight: 700;
+    font-family: 'Bitter', serif;
+    cursor: pointer;
+}
+
+.btn1:hover {
+    background-color: rgb(250, 125, 125);
+    transition: 0.5s;
+    color: #fff;
+}
+
+body {
+    font-family: montserrat, sans-serif;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.card {
+    margin: 6px auto 0;
+    width: 500px;
+    height: 500px;
+    perspective: 1000px;
+    position: relative;
+    min-height: 1px;
+}
+
+
+.card__face {
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0px 3px 18px 3px rgba(0, 0, 0, 0.2);
+}
+
+.card__body {
+    padding: 30px;
+    font-weight: bold;
+}
+
+.card__body h3 {
+    color: var(--dark);
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.card__body p {
+    color: var(--dark);
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.card__header {
+    position: relative;
+    padding: 30px 30px 40px;
+    font-family: 'Bitter', serif;
+    text-transform: uppercase;
+}
+
+.card__header h2 {
+    color: #FFF;
+    font-size: 25px;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.card__header:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to bottom left, var(--primary) 10%, var(--secondary) 115%);
+    z-index: -1;
+    border-radius: 0px 0px 50% 0px;
+}
+
+#txtNome {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+#txtEmail {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+#txtConfirSenha {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+#txtSenha {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+#txtCpf {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+

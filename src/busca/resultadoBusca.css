@@ -1,0 +1,86 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Bitter', serif;
+}
+
+h4 {
+    font-size:larger;
+    font-weight: 200;
+    font-family: 'Bitter', serif;
+}
+
+.btn1 { /*Botão Veja Mais*/
+    height: 45px;
+    width: 35%;
+    border: none;
+    outline: none;
+    background-color: rgb(248, 26, 92);
+    color: white;
+    font-weight: 700;
+    border-radius: 60px;
+}
+
+/*Efeito botão*/ 
+.btn1:hover {
+    background-color: rgb(187, 10, 63);
+    transition: 0.5s;
+    -webkit-box-shadow: -2px -1px 25px -4px rgba(194, 49, 92, 0.562);
+}
+
+/*Efeito sombreamento dos cards*/ 
+.card:hover {
+    box-shadow: -2px -1px 25px -4px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -2px -1px 25px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: -2px -1px 25px -4px rgba(0,0,0,0.75);
+    transition: 0.5s;
+}
+
+.produto {
+    max-width: 100%;
+    width: 295px;
+    height: 195px;
+    object-fit: cover;
+}
+
+.zoom {
+    overflow:hidden;
+}
+
+.zoom img {
+    max-width: 100%;
+    -moz-transition: all 0.9s ;
+    -webkit-transition: all 0.9s;
+    transition: all 0.9s;
+}
+
+.zoom:hover img {
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.btndetails{
+    height: 40%;
+    width: 15%;
+    outline: none;
+    border: none;
+    background: #f81a5c;
+    font-family: 'Bitter', serif;
+    color: white;
+    border-radius: 60px;
+    font-weight: 700;
+}
+
+.btndetails:hover {
+    background-color: #bb0a3f;
+    color: #fff;
+    transition: 0.5s;
+}
+
+/* ÍCONE DE FAVORITO
+.fa-heart-o:hover {
+    color: rgb(250, 125, 125);
+    transition: 0.5s;
+}/*
