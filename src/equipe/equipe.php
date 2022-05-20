@@ -36,7 +36,7 @@
                         <div class="col-lg-3 text-center">
                             <div class="card border-0 bg-light mb-2">
                                 <div class="card-body">
-                                    <img src="https://media-exp1.licdn.com/dms/image/C4D03AQFzfc9usLguYw/profile-displayphoto-shrink_400_400/0/1622641924944?e=1652313600&v=beta&t=ERgjChnm1Ki5fh3kez6Zw69zUnIczjw-hPrAfcBL-lM"
+                                    <img src="https://media-exp1.licdn.com/dms/image/C4D03AQFzfc9usLguYw/profile-displayphoto-shrink_400_400/0/1622641924944?e=1658361600&v=beta&t=fV1fIVb25ndoJmABKKbj609Ms-09WxwNZvn7srciabs"
                                         class="img-fluid sobre" alt="">
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                         <div class="col-lg-3 text-center">
                             <div class="card border-0 bg-light mb-2">
                                 <div class="card-body">
-                                    <img src="https://media-exp1.licdn.com/dms/image/C4E03AQG-UCC6ERb_gw/profile-displayphoto-shrink_400_400/0/1629637273221?e=1652313600&v=beta&t=_9EDmev2iXX2wxDzgQzx0mF6i_kxecl-blWzDnmHKOo"
+                                    <img src="https://media-exp1.licdn.com/dms/image/C4E03AQG-UCC6ERb_gw/profile-displayphoto-shrink_400_400/0/1629637273221?e=1658361600&v=beta&t=SGJlbgYnA_aV9D6lqOUpVpyz9Uf2QUZV8t7EZ7igm7w"
                                         class="img-fluid sobre" alt="">
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                         <div class="col-lg-3 text-center">
                             <div class="card border-0 bg-light mb-2">
                                 <div class="card-body">
-                                    <img src="https://media-exp1.licdn.com/dms/image/C4E03AQETndEZsSC7pw/profile-displayphoto-shrink_400_400/0/1637464641990?e=1652313600&v=beta&t=N36JUzTuaw06P7Ek_073I3CAUa5rICwlolFDIE07m5c"
+                                    <img src="https://media-exp1.licdn.com/dms/image/C4E03AQETndEZsSC7pw/profile-displayphoto-shrink_400_400/0/1637464641990?e=1658361600&v=beta&t=TkJj0p7u_UhHR2C3lNhL5qUs1F9o3sFPNL5KAX4a8-0"
                                         class="img-fluid sobre" alt="">
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                         <div class="col-lg-3 text-center">
                             <div class="card border-0 bg-light mb-2">
                                 <div class="card-body">
-                                    <img src="https://media-exp1.licdn.com/dms/image/C4E03AQHmOFBCojKP0A/profile-displayphoto-shrink_400_400/0/1640981208950?e=1652313600&v=beta&t=0HDP7l9Cud0TPc5qaAm3dbQYTLXmYexjuYQhBlJFqXU"
+                                    <img src="https://media-exp1.licdn.com/dms/image/C4E03AQHmOFBCojKP0A/profile-displayphoto-shrink_400_400/0/1640981208950?e=1658361600&v=beta&t=Xe-7_CmO4sxZCOrtkirTtsBqp_hwCBZTYhkyqa_qK2M"
                                         class="img-fluid sobre" alt="">
                                 </div>
                             </div>

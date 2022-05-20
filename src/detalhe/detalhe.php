@@ -19,18 +19,21 @@
 
     <title>Vitrine | Sua Mesa Posta</title>
 <style>
-    * {
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Bitter', serif;
 }
 
-.produto {
-    max-width: 100%;
-    width: 295px;
-    height: 195px;
-    object-fit: cover;
+.btnVoltar{
+    font-size: 1.5em;
+    color: #f81a5c;
+    border-radius: 60px;
+}
+
+.btnVoltar:hover{
+    color: #ff85aa;
 }
 
 .titulo {
@@ -45,16 +48,11 @@
     font-size: 16px;
 }
 
-.fa-cart-plus {
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding-right: 5px;
-    color: rgb(248, 26, 92);
-}
-
-.fa-cart-plus:hover {
-    color: rgb(250, 125, 125);
-    transition: 0.5s;
+.produto {
+    max-width: 100%;
+    width: 295px;
+    height: 195px;
+    object-fit: cover;
 }
 
 .card:hover {
@@ -73,16 +71,16 @@
     <!--/MENU-->
 
     <!--CARDS-->
-    <section>
+    <section class="product">
         <div class="container py-5">
             <div class="row py-5">
-                <div class="col-lg-5 m-auto text-center">
-                    <h1 class="titulo">Produtos</h1>
+                <div class="col-lg-2 m-auto text-center ">
+                    <h1 class="titulo">Detalhe</h1>
                     <h5 class="subtitulo">Poe da Mesa</h5>
                 </div>
             </div>
             <div class="row">
-                <?php listar(); ?>
+                <?php if (isset($_GET["codigo"])) listar ($_GET ["codigo"]); ?>
             </div>
 
         </div>
@@ -107,30 +105,36 @@
 </body>
 </html>
 <?php 
-    function listar(){
+    function listar($codigo){
         $conexao = new mysqli("localhost", "root", "root", "produto"); 
 
-        $sql = "select * from produto order by codigo";
+        $sql = "select * from produto where codigo=$codigo";
 
         $resultado = mysqli_query($conexao, $sql);
 
         while($reg = mysqli_fetch_array($resultado)){
             $codigo = $reg["codigo"];
             $titulo = $reg["titulo"];
+            $descritivo = $reg["descritivo"];
+            $especificacao = $reg["especificacao"];
             $valor = $reg["valor"];
-            $qtd = $reg["qtd"];
 
-            echo "<div class='col-lg-3 p-2 text-center'>
-                <div class='card border-0 bg-light mb-2'>
-                    <div class='card-body'>
-                    <a href='../detalhe/detalhe.php?codigo=$codigo'>
-                        <img src='../../assets/img/$codigo.jpg' class='img-fluid produto' alt=''></a>
+            echo "<div class='col-lg-12 center p-2'>
+                    <div class='row justify-content-md-center p-2'>
+                        <div class='col-lg-4 card border-0 bg-light mb-2'>
+                            <div class='card-body'>
+                                <img src='../../assets/img/$codigo.jpg' class='img-fluid produto' alt=''>
+                            </div>
+                        </div>
+                        <div class='col-lg-4 text-justify card border-0 bg-light mb-2 ml-5'>
+                            <h6 class='text-center m-4 font-weight-bold'>$titulo</h6>
+                            <p>$descritivo</p>
+                            <p>Especificações Técnicas: $especificacao</p>
+                            <a class='btnVoltar my-5' href='../vitrine/vitrine.php' target='_top'>
+                            <i class='fa fa-arrow-left' aria-hidden='true'></i></a>
+                        </div>
                     </div>
-                    <h5 class='text-center'>$titulo</h5>
-                    <h6 class='text-center font-weight-light'>R$ $valor</h6>
-                    <a href='../carrinho/adicionar.php?codigo=$codigo'><i class='fa fa-cart-plus mb-3' aria-hidden='true'></i></a>
-                </div>
-            </div>";
+                </div>";
         }
         mysqli_close($conexao);
     }

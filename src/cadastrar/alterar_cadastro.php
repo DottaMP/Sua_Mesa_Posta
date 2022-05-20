@@ -1,4 +1,12 @@
 <?php ob_start(); ?>
+<?php
+    session_start();
+    //para autenticar a págiga, 
+    if (isset($_SESSION["codigo"])==false){
+        header("location: login.php"); //se não estiver logado voltar para a página de login
+    }
+
+?>
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -27,88 +35,85 @@
         <div class="col-md-12">
             <div class="row d-flex align-items-center">
 
-                <div class="col-md-6 mt-2 p-5 ">
+                <div class="col-md-12 mt-2 p-5 ">
                     <div class="row d-flex justify-content-center">
                         <div class="card-fluid center">
                             <div class="card__face">
                                 <div class="card__header">
-                                    <h2 class="text-center">Cadastro</h2>
+                                    <h2 class="text-center">Atualize seu Cadastro</h2>
                                 </div>
                                 <div class="card__body">
-                                    <form id="frm1" method="post" action="cadastrar.php?enviar=1"> <!--parametro via get ?enviar=1"-->
+                                    <form id="frm1" method="post" action="alterar_cadastro.php?alterar=1"> <!--parametro via get ?enviar=1"-->
+                                    <div class="form-group">
+                                        <label for="codigo">Codigo</label>
+                                        <input class="form-control" type="text" name="codigo" id="codigo"
+                                        placeholder="<?php if(isset($_SESSION["codigo"])) echo $_SESSION["codigo"];?>" readonly>
+                                    </div>
+
                                         <div class="form-group">
                                             <label for="nome">Nome</label>
                                             <input class="form-control" type="text" name="nome" id="nome"
-                                                onkeyup="validaNome()" required placeholder="Seu nome">
+                                                onkeyup="validaNome()" placeholder="<?php if(isset($_SESSION["nome"])) echo $_SESSION["nome"];?>">
                                             <div id="txtNome"></div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="sobrenome">Sobrenome</label>
                                             <input class="form-control" type="text" name="sobrenome" id="sobrenome"
-                                                onkeyup="validaNome()" required placeholder="Seu Sobrenome">
+                                                onkeyup="validaNome()" placeholder="<?php if(isset($_SESSION["sobrenome"])) echo $_SESSION["sobrenome"];?>">
                                             <div id="txtNome"></div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="email">Email</label>
                                             <input class="form-control" type="email" name="email" id="email"
-                                                onkeyup="validaEmail()" required placeholder="Seu email">
+                                                onkeyup="validaEmail()" placeholder="<?php if(isset($_SESSION["email"])) echo $_SESSION["email"];?>">
                                             <div id="txtEmail"></div>
                                         </div>
 
-                                        <div class="row d-flex">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="senha">Senha</label>
-                                                    <input class="form-control" type="password" name="senha" id="senha"
-                                                        onkeyup="validaSenha()" required placeholder="Sua senha">
-                                                    <div id="txtSenha"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="confirmSenha">Confirmar Senha</label>
-                                                    <input class="form-control" type="password" name="confirSenha"
-                                                        id="confirSenha" onkeyup="validaConfirmaSenha()" required
-                                                        placeholder="Confirme sua senha">
-                                                    <div id="txtConfirSenha"></div>
-                                                </div>
-                                            </div>
+                                        <div class="form-group">
+                                            <label for="senha">Senha</label>
+                                            <input class="form-control" type="password" name="senha" id="senha"
+                                                onkeyup="validaSenha()" placeholder="******">
+                                            <div id="txtSenha"></div>
                                         </div>
+
                                         <div class="form-group">
                                             <label for="cpfc">CPF</label>
                                             <input class="form-control" type="text" name="cpfc" id="cpfc" value=""
                                                 maxlength="14" onkeyup="validarCPF()"
-                                                onkeypress="formatarCPF('###.###.###-##', this);" required
-                                                placeholder="Seu CPF">
+                                                onkeypress="formatarCPF('###.###.###-##', this);"
+                                                placeholder="<?php if(isset($_SESSION["cpfc"])) echo $_SESSION["cpfc"];?>">
                                             <div id="txtCpf"></div>
                                         </div>
                                         <div class="form-group">
                                             <label for="telefone">Celular</label>
                                             <input class="form-control" type="tel" name="telefone" id="telefone"
                                                 maxlength="14" onkeyup="validaTelefone()"
-                                                onkeypress="formatarTelefone('## #.####-####', this);" required
-                                                placeholder="(99)9.9999-9999">
+                                                onkeypress="formatarTelefone('## #.####-####', this);"
+                                                placeholder="<?php if(isset($_SESSION["telefone"])) echo $_SESSION["telefone"];?>">
                                         </div>
 
                                         <div class="d-flex justify-content-center mt-4">
-                                            <button type="button" class="btn00 mr-5"><a class="text-white"
-                                                    href="../login/login.php" target="_top">Cancelar</a></button>
-                                            <button id="bt1" type="button" onclick="validar()" class="btn btn-outline-success">Cadastrar</button>
+                                            <div class="text-center">
+                                                <button type="button" class="btn btn-primary" name="b3" onclick="validar()">Alterar</button>
+                                            </div>
                                         </div>
                                     </form>
-                                    <?php enviarCadastro()?>
+                                    <?php alterar();?>
+                                    <form id="frm2" method="post" action="alterar_cadastro.php?excluir=1">
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <div class="text-center">
+                                                <button type="button" class="btn btn-primary" name="b4" onclick="excluir()">Excluir Conta</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <?php remover();?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-6 mt-2 mb-5 p-5">
-                    <img class="img-fluid" src="../../assets/img/cadastro.gif" alt="Imagem">
-                </div>
-
             </div>
         </div>
 
@@ -136,7 +141,6 @@ let nome = document.querySelector("#nome")
 let sobrenome = document.querySelector("#sobrenome") 
 let email = document.querySelector("#email") 
 let senha = document.querySelector("#senha")
-let confirSenha = document.querySelector("#confirSenha")
 let cpfc = document.querySelector("#cpfc")
 let nomeOk = false
 let emailOk = false
@@ -276,13 +280,6 @@ function validar() {
         return false;
     }
 
-    if (senha.value != confirSenha.value) {
-        alert("A senha está diferente");
-        confirSenha.value = "";
-        confirSenha.focus();
-        return false;
-    }
-
     if (!validarCPF(cpfc.value) || cpfc.value.length < 11) {
         alert("Verifique seu CPF");
         cpfc.value = "";
@@ -299,36 +296,62 @@ function validar() {
 
     frm1.submit(); //o submit envia o form via post para o php
 }
+function excluir() {
+
+    alert("Seu cadastro será excluído!");
+
+    frm2.submit(); //o submit envia o form via post para o php
+}
 </script>
 
 <?php
-    function enviarCadastro(){
-        //se o parâmetro via get foi transmitido vai recuperar todos os demais parametros e enviar por email
-        if(isset($_GET["enviar"])){
+    function alterar(){
+        if(isset($_GET["alterar"])){
+            $codigo = $_SESSION["codigo"];
             $nome = $_POST["nome"];
             $sobrenome = $_POST["sobrenome"];
             $email = $_POST["email"];
             $senha = $_POST["senha"];
             $cpfc = $_POST["cpfc"];
             $telefone = $_POST["telefone"];
+            
+            //abre conexão
+            $conexao = new mysqli("localhost", "root", "root", "cliente");
     
-            //abrindo a conexão com o banco de dados mysql
-            $conexao = new mysqli("localhost", "root", "root", "cliente"); //informar o endereço do banco, usuário, senha, nome do banco de dados que será utilizado
-    
-            //para inserir é criado a variável sql e executado o comando sql de insert, onde vai inserir um registro no BD usando as variáveis ($) que recuperou do formulário enviado via post
-            $sql = "insert into cliente (nome, sobrenome, email, senha, cpfc, telefone) 
-                values ('$nome', '$sobrenome', '$email', md5('$senha'), '$cpfc', '$telefone')"; //a senha será criptografada utilizando o md5
-
-            //para executar o comando do sql utiliza o mysqli_query onde é passado a conexão aberta e o comando sql que deverá ser executado
-            mysqli_query($conexao, $sql);
-
-            //redirecionar para outro página, após logado
+            //para alterar é criado a variável sql e executado o comando sql de update
+            $sql = "update cliente set nome='$nome', sobrenome='$sobrenome', email='$email', 
+            senha=md5('$senha'), cpfc='$cpfc', telefone='$telefone' where codigo='$codigo'";
+            
+            mysqli_query($conexao, $sql); //executa o comando sql
+            $_SESSION["codigo"] = $reg["codigo"];
+            $_SESSION["nome"] = $reg["nome"];
+            $_SESSION["sobrenome"] = $reg["sobrenome"];
+            $_SESSION["email"] = $reg["email"];
+            $_SESSION["cpfc"] = $reg["cpfc"];
+            $_SESSION["telefone"] = $reg["telefone"];
             header("location: ../login/login.php");
-
-            //por último, deverá desconectar do banco de dados, fechando a conexão.
-            mysqli_close($conexao);
-            echo "<br><h4>Registro inserido com sucesso!</h4>";
+            mysqli_close($conexao); //fecha conexão
+        
+            echo "<br><h4>Registro alterado com sucesso!</h4>";
         }
-    }           
+    }
+
+    function remover(){
+        if(isset($_GET["excluir"])){
+            $codigo = $_SESSION["codigo"];
+            
+            //abre conexão
+            $conexao = new mysqli("localhost", "root", "root", "cliente");
+    
+            //para alterar é criado a variável sql e executado o comando sql de update
+            $sql = "delete from cliente where codigo='$codigo'";
+            
+            mysqli_query($conexao, $sql); //executa o comando sql
+            session_destroy(); //mata as variáveis globais de sessão
+            header("location: ../login/login.php");
+            mysqli_close($conexao); //fecha conexão
+        }
+
+    }
 ?>
 <?php ob_end_flush(); ?>

@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -38,7 +39,7 @@
 
                         <div class="card center">
                             <div id="flip-card">
-                                <div class="card__face">
+                                <form class="card__face" id="frm1" method="post" action="login.php?logar=1" >
                                     <div class="card__header">
                                         <h2 class="text-center">Entrar</h2>
                                     </div>
@@ -58,7 +59,7 @@
                                         </div>
 
                                         <div class="d-flex justify-content-end mt-4 mb-3">
-                                            <button class="btn1" type="submit">Entrar</button>
+                                            <button class="btn1" type="button" onclick="validar()">Entrar</button>
                                         </div>
                                         <p class="text-center text-danger"><a class="tm" id="flip-card-back">Esqueci minha
                                                 senha</a></p>
@@ -67,9 +68,10 @@
                                                 href="../cadastrar/cadastrar.php" target="_top">Cadastre-se</a>
                                         </p>
                                     </div>
-                                </div>
+                                </form>
+                                <?php fazerLogin()?>
 
-                                <div class="card__face card__face--back">
+                                <form class="card__face card__face--back" id="frm2" method="post" action="login.php?enviar=1">
                                     <div class="card__content">
 
                                         <div class="card__header">
@@ -77,8 +79,8 @@
                                         </div>
                                         <div class="card__body">
                                             <div class="form-group">
-                                                <label for="emailLogin" class="mt-3 mb-3">Email</label>
-                                                <input class="form-control" type="email" name="emailLogin"
+                                                <label for="email" class="mt-3 mb-3">Email</label>
+                                                <input class="form-control" type="email" name="email"
                                                     id="emailLogin" onkeyup="validaLogin()" placeholder="Seu email">
                                                 <div id="txtEmailLogin"></div>
                                             </div>
@@ -92,7 +94,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
+                                <?php enviarEmail()?>
                             </div>
 
                         </div>
@@ -112,9 +115,6 @@
     <?php include("../footer/footer.php"); ?>
     <!--/FOOTER-->
 
-    <!--add o script do js-->
-    <script src="./login.js"></script>
-
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -129,3 +129,160 @@
 </body>
 
 </html>
+<script lang="javascript">
+let email = document.querySelector("#email")
+let senha = document.querySelector("#senha")
+let emailLogin = document.querySelector("#emailLogin")
+let txtEmailLogin = document.querySelector("#txtEmailLogin")
+let txtSenha = document.querySelector("#txtSenha")
+let txtEmail = document.querySelector("#txtEmail")
+let emailOk = false
+let emailLoginOk = false
+let senhaOk = false
+
+document.addEventListener('DOMContentLoaded', function (event) {
+
+    document.getElementById('flip-card-back').style.visibility = 'visible';
+    document.getElementById('flip-card-front').style.visibility = 'visible';
+
+    document.getElementById('flip-card-back').onclick = function () {
+        document.getElementById('flip-card').classList.toggle('do-flip');
+    };
+
+    document.getElementById('flip-card-front').onclick = function () {
+        document.getElementById('flip-card').classList.toggle('do-flip');
+    };
+
+});
+
+function validaEmail() {
+    if (email.value.indexOf("@") && email.value.indexOf(".com") == -1) { //indexOf = conteudo
+        txtEmail.innerHTML = "Email Inválido"
+        txtEmail.style.color = "red"
+    } else {
+        txtEmail.innerHTML = "Email Válido"
+        txtEmail.style.color = "green"
+        emailOk = true
+    }
+}
+
+function validaSenha() {
+    if (senha.value.length < 6 || senha.value.length > 15) { //length = tamanho
+        txtSenha.innerHTML = "Min 6 Max 15 caracteres"
+        txtSenha.style.color = "red"
+    } else {
+        txtSenha.innerHTML = "Válido"
+        txtSenha.style.color = "green"
+        senhaOk = true
+    }
+}
+
+function validar() {
+    if (email.value.length < 6 || email.value.indexOf("@") <= 0 || email.value.lastIndexOf(".") <= email.value.indexOf("@")) {
+        alert("Email ou Senha inválidos");
+        email.value = "";
+        email.focus();
+        return false;
+    }
+
+    if (senha.value.length < 6 || senha.value.length > 15) {
+        alert("Email ou Senha inválidos");
+        senha.value = "";
+        senha.focus();
+        return false;
+    }
+
+    frm1.submit(); //o submit envia o form via post para o php
+}
+
+function validaLogin() {
+    if (emailLogin.value.indexOf("@") && emailLogin.value.indexOf(".com") == -1) {
+        txtEmailLogin.innerHTML = "Email Inválido"
+        txtEmailLogin.style.color = "red"
+    } else {
+        txtEmailLogin.innerHTML = "Email Válido"
+        txtEmailLogin.style.color = "green"
+        emailLoginOk = true
+    }
+}
+
+function enviarEsqueciSenha() {
+    if (emailLoginOk == true) {
+        frm2.submit(); //o submit envia o form via post para o php
+    } else {
+        return false;
+    }
+}
+
+</script>
+
+<?php 
+    function fazerLogin(){
+        if(isset($_GET["logar"])){
+            $email = $_POST["email"];
+            $senha = $_POST["senha"];
+    
+            $conexao = new mysqli("localhost", "root", "root", "cliente"); //conexão com o BD
+    
+            //para inserir é criado a variável sql e executado o comando sql de insert, onde vai inserir um registro no BD usando as variáveis ($) que recuperou do formulário enviado via post
+            $sql = "select * from cliente where email='$email' and senha=md5('$senha')"; //a senha será criptografada utilizando o md5
+            
+            $resultado = mysqli_query($conexao, $sql); //será retornado um resultado
+    
+            if($reg = mysqli_fetch_array($resultado)){//se encontrar quer dizer que encontrou o e-mail e a senha criptografada           
+                //para guardar o código do cliente é utilizado variáveis de sessão
+                //é a conexão entre navegador e o servidor de aplicação
+                //para cada usuário/navegador que está acessando vai criar uma sessão
+    
+                session_start(); //se conseguir logar será iniciado a sessão
+    
+                //variavel global
+                $_SESSION["codigo"] = $reg["codigo"];
+                $_SESSION["nome"] = $reg["nome"];
+                $_SESSION["sobrenome"] = $reg["sobrenome"];
+                $_SESSION["email"] = $reg["email"];
+                $_SESSION["cpfc"] = $reg["cpfc"];
+                $_SESSION["telefone"] = $reg["telefone"];
+                
+                //redirecionar para outro página, após logado
+                header("location: ../vitrine/vitrine.php");
+    
+            }else{ //se não consegue extrair um registro irá cair direto no else
+                echo "<script>alert('Email ou senha inválidos!' );</script>";
+            }
+    
+            mysqli_close($conexao); //desconectar
+        }
+    }
+
+    function enviarEmail(){
+        
+        if(isset($_GET["enviar"])){
+            $email = $_POST["email"];
+
+            $conexao = new mysqli("localhost", "root", "root", "cliente"); //conexão com o BD
+    
+            $sql = "select * from cliente where email='$email'";
+            
+            $resultado = mysqli_query($conexao, $sql); //será retornado um resultado
+    
+            if($reg = mysqli_fetch_array($resultado)){//se passar quer dizer que encontrou o e-mail   
+                $email = $_POST["email"];
+                $body = "Solicitação de Reset de Senha";
+                $headers  = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type: text/html; harset=UTF-8" . "\r\n";
+                $headers .= "From: Equipe Fatec <equipe.fatec.ipiranga@gmail.com>" . "\r\n";                       
+                if(mail($email, $body, $headers)){
+                    echo "<script>alert('Email enviado com sucesso!');</script>";
+                }
+                
+    
+            }else{ //se não consegue extrair um registro irá cair direto no else  
+                echo "<script>alert('Email inválido!');</script>";
+            }
+    
+            mysqli_close($conexao); //desconectar
+        }
+    }
+?>
+<?php ob_end_flush(); ?>

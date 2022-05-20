@@ -1,3 +1,7 @@
+<?php ob_start(); ?>
+<?php
+    session_start();
+?>
 <style>
     * {
     padding: 0;
@@ -38,6 +42,16 @@
         color: rgb(59, 59, 59);
     }
 
+    .fa-sign-out{
+        font-size: 1.5em;
+        color: rgb(59, 59, 59);
+    }
+
+    .fa-lock {
+        font-size: 1.5em;
+        color: rgb(59, 59, 59);
+    }
+
     .fa-user-circle-o:hover {
         color: rgb(250, 125, 125);
         transition: 0.5s;
@@ -47,6 +61,22 @@
         color: rgb(250, 125, 125);
         transition: 0.5s;
 
+    }
+
+    .fa-sign-out:hover {
+        color: rgb(250, 125, 125);
+        transition: 0.5s;
+    }
+
+    .fa-lock:hover {
+        color: rgb(250, 125, 125);
+        transition: 0.5s;
+
+    }
+
+    b {
+        font-size: 0.75em;
+        color: rgb(59, 59, 59);
     }
 
     .pesquisa {
@@ -112,11 +142,22 @@
                             aria-hidden="true"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../login/login.php" target="_top"><i class="fa fa-user-circle-o"
-                            aria-hidden="true"></i></a>
+                    <a class="nav-link" href="../cadastrar/perfil.php" target="_top"><?php if (isset($_SESSION["nome"])){ ?>
+                        <?php $nome = "admin"; if ($_SESSION["nome"] == $nome){ ?>
+                            <li><a class="nav-link" href="../admin/adm.php" target="_top"><i class="fa fa-lock" aria-hidden="true"></i></a></li>
+                            <li><a class="nav-link" href="../login/logoff.php" target="_top"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                            <?php } else { ?>
+                            <b class="nav-link"><?php echo "Olá, ". $_SESSION["nome"];?></b>
+                        <li><a class="nav-link" href="../login/logoff.php" target="_top"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                        <?php } ?>
+                        <?php } else { ?>
+                            <li><a class="nav-link" href="../login/login.php" target="_top"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a></li>
+                        <?php } ?>
+                    </a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 <!--/MENU-->
+<?php ob_end_flush(); ?>

@@ -1,3 +1,5 @@
+<?php ob_start(); ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -14,10 +16,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./home.css">
     <link rel="icon" type="image/x-icon" href="../../assets/img/favicon.png">
+    <link rel="stylesheet" href="./vitrine.css">
 
-    <title>Home | Sua Mesa Posta</title>
+    <title>Vitrine | Sua Mesa Posta</title>
 
 </head>
 
@@ -26,31 +28,22 @@
     <?php include("../menu/menu.php"); ?>
     <!--/MENU-->
 
-    <!-- 1 Imagem -->
-    <section class="main py-5">
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col-lg-7 text-center mt-5">
-                    <h1>Aqui a Sua Mesa Está Posta</h1>
-                    <a href="../vitrine/vitrine.php" target="_top">
-                        <button class="btn1 mt-3 vermais">Veja Nossas Mesas Postas</button></a>
+    <!--CARDS-->
+    <section class="product">
+        <div class="container py-5">
+            <div class="row py-5">
+                <div class="col-lg-5 m-auto text-center">
+                    <h1>Detalhe</h1>
+                    <h5 class="h5">Poe da Mesa</h5>
                 </div>
             </div>
+            <div class="row">
+                <?php if (isset($_GET["codigo"])) listar ($_GET ["codigo"]); ?>
+            </div>
+
         </div>
     </section>
-    <!-- /1 Imagem  -->
-
-    <!--MAIS VENDIDOS-->
-    <?php include("../maisVendidos/maisVendidos.php"); ?>
-    <!--/MAIS VENDIDOS-->
-
-    <!--CONTATO-->
-    <?php include("../contato/contato.php"); ?>
-    <!--/CONTATO-->
-
-    <!-- SOBRE NÓS -->
-    <?php include("../equipe/equipe.php"); ?>
-    <!-- SOBRE NÓS -->
+    <!--/CARDS-->
 
     <!--FOOTER-->
     <?php include("../footer/footer.php"); ?>
@@ -68,5 +61,37 @@
         crossorigin="anonymous"></script>
 
 </body>
-
 </html>
+<?php 
+    function listar($codigo){
+        $conexao = new mysqli("localhost", "root", "root", "produto"); 
+
+        $sql = "select * from produto where codigo=$codigo";
+
+        $resultado = mysqli_query($conexao, $sql);
+
+        while($reg = mysqli_fetch_array($resultado)){
+            $codigo = $reg["codigo"];
+            $titulo = $reg["titulo"];
+            $descritivo = $reg["descritivo"];
+            $especificacao = $reg["especificacao"];
+            $valor = $reg["valor"];
+
+            echo "<div class='col-lg-12 text-center'>
+                <div class='card border-0 bg-light mb-2'>
+                    <div class='card-body'>
+                        <img src='../../assets/img/$codigo.jpg' class='img-fluid produto' alt=''>
+                    </div>
+                </div>
+                <h6>$titulo</h6>
+                <p>$descritivo</p>
+                <p>$especificacao</p>
+                <p>R$ $valor</p>
+                <a class='btnVoltar' href='../vitrine/vitrine.php' target='_top'><i class='fa fa-arrow-left'
+                aria-hidden='true'></i></a>
+            </div>";
+        }
+        mysqli_close($conexao);
+    }
+?>
+<?php ob_end_flush(); ?>
