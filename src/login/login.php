@@ -222,7 +222,7 @@ function enviarEsqueciSenha() {
             $email = $_POST["email"];
             $senha = $_POST["senha"];
     
-            $conexao = new mysqli("localhost", "root", "root", "cliente"); //conexão com o BD
+            $conexao = new mysqli("localhost", "root", "root", "bdsite"); //conexão com o BD
     
             //para inserir é criado a variável sql e executado o comando sql de insert, onde vai inserir um registro no BD usando as variáveis ($) que recuperou do formulário enviado via post
             $sql = "select * from cliente where email='$email' and senha=md5('$senha')"; //a senha será criptografada utilizando o md5
@@ -244,11 +244,14 @@ function enviarEsqueciSenha() {
                 $_SESSION["cpfc"] = $reg["cpfc"];
                 $_SESSION["telefone"] = $reg["telefone"];
                 
-                //redirecionar para outro página, após logado
+                //redirecionar para outra página, após logado
                 header("location: ../vitrine/vitrine.php");
     
             }else{ //se não consegue extrair um registro irá cair direto no else
-                echo "<script>alert('Email ou senha inválidos!' );</script>";
+                echo ("<SCRIPT LANGUAGE='JavaScript'>
+                    window.alert('Email ou senha inválidos!')
+                    window.location.href='../login/login.php';
+                    </SCRIPT>");
             }
     
             mysqli_close($conexao); //desconectar
@@ -260,7 +263,7 @@ function enviarEsqueciSenha() {
         if(isset($_GET["enviar"])){
             $email = $_POST["email"];
 
-            $conexao = new mysqli("localhost", "root", "root", "cliente"); //conexão com o BD
+            $conexao = new mysqli("localhost", "root", "root", "bdsite"); //conexão com o BD
     
             $sql = "select * from cliente where email='$email'";
             
@@ -269,8 +272,6 @@ function enviarEsqueciSenha() {
             if($reg = mysqli_fetch_array($resultado)){//se passar quer dizer que encontrou o e-mail   
                 $email = $_POST["email"];
                 $body = "Solicitação de Reset de Senha";
-                $headers  = "MIME-Version: 1.0" . "\r\n";
-                $headers .= "Content-type: text/html; harset=UTF-8" . "\r\n";
                 $headers .= "From: Equipe Fatec <equipe.fatec.ipiranga@gmail.com>" . "\r\n";                       
                 if(mail($email, $body, $headers)){
                     echo "<script>alert('Email enviado com sucesso!');</script>";

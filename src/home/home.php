@@ -1,6 +1,7 @@
+<?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-
+<?php session_start();?>
 <head>
     <!-- Meta tags Obrigatórias -->
     <meta charset="utf-8">
@@ -68,5 +69,5 @@
         crossorigin="anonymous"></script>
 
 </body>
-
 </html>
+<?php ob_end_flush(); ?>

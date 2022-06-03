@@ -1,4 +1,5 @@
 <?php ob_start(); ?>
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -108,7 +109,7 @@
 </html>
 <?php 
     function listar(){
-        $conexao = new mysqli("localhost", "root", "root", "produto"); 
+        $conexao = new mysqli("localhost", "root", "root", "bdsite"); 
 
         $sql = "select * from produto order by codigo";
 

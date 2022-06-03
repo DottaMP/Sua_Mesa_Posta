@@ -1,11 +1,12 @@
 <?php
 
+
 if(isset($_GET["codigo"])){
 	$codigo = $_GET["codigo"];
 	session_start();
 	$sessionId = session_id();
 
-	$conexao = new mysqli("localhost","root","root","produto");
+	$conexao = new mysqli("localhost","root","root","bdsite");
 	
 	$sql = "select codigo from cesta where codigoProduto='$codigo' and sessionId='$sessionId'";
 	$resultado = mysqli_query($conexao, $sql);

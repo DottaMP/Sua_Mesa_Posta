@@ -250,7 +250,7 @@
         $valor = $_POST["valor"];
         $qtd = $_POST["qtd"];
 
-        $conexao = new mysqli("localhost", "root", "root", "produto"); 
+        $conexao = new mysqli("localhost", "root", "root", "bdsite"); 
 
         $sql = "insert into produto (titulo, descritivo, especificacao, valor, qtd) 
             values ('$titulo', '$descritivo', '$especificacao', '$valor', '$qtd')"; 
@@ -267,7 +267,7 @@
 
     function pesquisar($codigo){
 
-        $conexao = new mysqli("localhost", "root", "root", "produto"); 
+        $conexao = new mysqli("localhost", "root", "root", "bdsite"); 
 
         $sql = "select * from produto where codigo='$codigo'";
 
@@ -304,7 +304,7 @@
         $valor = $_POST["valor"];
         $qtd = $_POST["qtd"];
 
-        $conexao = new mysqli("localhost", "root", "root", "produto");
+        $conexao = new mysqli("localhost", "root", "root", "bdsite");
 
         $sql = "update produto set titulo='$titulo', descritivo='$descritivo', especificacao='$especificacao', 
         valor='$valor', qtd='$qtd' where codigo='$codigo'";
@@ -317,7 +317,7 @@
 
     function remover(){
         $codigo = $_POST["codigo"];
-        $conexao = new mysqli("localhost", "root", "root", "produto");
+        $conexao = new mysqli("localhost", "root", "root", "bdsite");
         $sql = "delete from produto where codigo='$codigo'";
         
         mysqli_query($conexao, $sql); 

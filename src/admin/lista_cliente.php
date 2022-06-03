@@ -185,7 +185,7 @@
 
 <?php 
     function listar(){
-        $conexao = new mysqli("localhost", "root", "root", "cliente"); 
+        $conexao = new mysqli("localhost", "root", "root", "bdsite"); 
 
         if(isset ($_POST["btnBusca"])){ 
             $busca = $_POST["busca"];

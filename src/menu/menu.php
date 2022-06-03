@@ -1,7 +1,4 @@
 <?php ob_start(); ?>
-<?php
-    session_start();
-?>
 <style>
     * {
     padding: 0;
@@ -94,14 +91,11 @@
     }
 
     .btn0 {
-        height: 40px;
-        width: 40%;
         outline: none;
         border: none;
-        font-family: 'Bitter', serif;
         color: rgb(248, 26, 92);
-        border-radius: 60px;
-        font-weight: 700;
+        border-radius: 10px;
+        background-color: transparent;
         cursor: pointer;
     }
 
@@ -111,6 +105,7 @@
 </style>
 
 <!--MENU-->
+<?php session_start();?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
         <a class="navbar-brand" href="../home/home.php">Sua Mesa Posta</a>
@@ -132,11 +127,12 @@
                 </li>
             </ul>
             <ul class="navbar-nav m-auto">
-                <li class="nav-item">
-                    <input class="px-2 pesquisa" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-                    <a class="btn0" href="../busca/resultadoBusca.php" target="_top"><i class="fa fa-search"
-                            aria-hidden="true"></i></a>
-                </li>
+                <form method="post" action="../busca/busca.php">
+                    <li class="nav-item">
+                        <input name="busca" class="px-2 pesquisa" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+                        <button class="btn0" target="_top"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </li>
+                </form>
                 <li class="nav-item">
                     <a class="nav-link" href="../carrinho/carrinho.php" target="_top"><i class="fa fa-shopping-bag"
                             aria-hidden="true"></i></a>

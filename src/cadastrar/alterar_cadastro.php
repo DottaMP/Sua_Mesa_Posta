@@ -316,7 +316,7 @@ function excluir() {
             $telefone = $_POST["telefone"];
             
             //abre conexão
-            $conexao = new mysqli("localhost", "root", "root", "cliente");
+            $conexao = new mysqli("localhost", "root", "root", "bdsite");
     
             //para alterar é criado a variável sql e executado o comando sql de update
             $sql = "update cliente set nome='$nome', sobrenome='$sobrenome', email='$email', 
@@ -341,7 +341,7 @@ function excluir() {
             $codigo = $_SESSION["codigo"];
             
             //abre conexão
-            $conexao = new mysqli("localhost", "root", "root", "cliente");
+            $conexao = new mysqli("localhost", "root", "root", "bdsite");
     
             //para alterar é criado a variável sql e executado o comando sql de update
             $sql = "delete from cliente where codigo='$codigo'";

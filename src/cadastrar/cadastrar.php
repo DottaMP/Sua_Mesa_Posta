@@ -1,6 +1,26 @@
 <?php ob_start(); ?>
 <!doctype html>
 <html lang="pt-br">
+<style>
+    .btn1 {
+        height: 40px;
+        width: 30%;
+        outline: none;
+        border: none;
+        background: rgb(255, 160, 189);
+        color: white;
+        border-radius: 60px;
+        font-weight: 700;
+        font-family: 'Bitter', serif;
+        cursor: pointer;
+    }
+
+    .btn1:hover {
+        background-color: rgb(18, 159, 41);
+        transition: 0.5s;
+        color: #fff;
+    }
+</style>
 <head>
     <!-- Meta tags Obrigatórias -->
     <meta charset="utf-8">
@@ -95,7 +115,7 @@
                                         <div class="d-flex justify-content-center mt-4">
                                             <button type="button" class="btn00 mr-5"><a class="text-white"
                                                     href="../login/login.php" target="_top">Cancelar</a></button>
-                                            <button id="bt1" type="button" onclick="validar()" class="btn btn-outline-success">Cadastrar</button>
+                                            <button id="btn1" type="button" onclick="validar()" class="btn1">Cadastrar</button>
                                         </div>
                                     </form>
                                     <?php enviarCadastro()?>
@@ -313,7 +333,7 @@ function validar() {
             $telefone = $_POST["telefone"];
     
             //abrindo a conexão com o banco de dados mysql
-            $conexao = new mysqli("localhost", "root", "root", "cliente"); //informar o endereço do banco, usuário, senha, nome do banco de dados que será utilizado
+            $conexao = new mysqli("localhost", "root", "root", "bdsite"); //informar o endereço do banco, usuário, senha, nome do banco de dados que será utilizado
     
             //para inserir é criado a variável sql e executado o comando sql de insert, onde vai inserir um registro no BD usando as variáveis ($) que recuperou do formulário enviado via post
             $sql = "insert into cliente (nome, sobrenome, email, senha, cpfc, telefone) 

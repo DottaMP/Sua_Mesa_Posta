@@ -106,7 +106,7 @@
 </html>
 <?php 
     function listar($codigo){
-        $conexao = new mysqli("localhost", "root", "root", "produto"); 
+        $conexao = new mysqli("localhost", "root", "root", "bdsite"); 
 
         $sql = "select * from produto where codigo=$codigo";
 

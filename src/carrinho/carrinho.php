@@ -1,7 +1,5 @@
 <?php ob_start(); ?>
-<?php        
-    session_start();
-?>
+<?php session_start();?>
 <style>
 * {
     padding: 0;
@@ -70,11 +68,12 @@ td{
 
 .btn00 {
     height: 40px;
-    width: 30%;
+    width: 15%;
     outline: none;
     border: none;
     background: rgb(248, 26, 92);
     color: white;
+    font-size: 12px;
     border-radius: 60px;
     font-weight: 700;
     font-family: 'Bitter', serif;
@@ -86,6 +85,26 @@ td{
     transition: 0.5s;
 }
 
+.btn01 {
+    height: 40px;
+    width: 30%;
+    outline: none;
+    border: none;
+    font-size: 12px;
+    background: rgb(18, 159, 41);
+    color: white;
+    border-radius: 60px;
+    font-weight: 700;
+    font-family: 'Bitter', serif;
+    cursor: pointer;
+}
+
+.btn01:hover {
+    background-color: rgb(0, 115, 19);
+    transition: 0.5s;
+}
+
+
 .fa-plus-circle {
     cursor: pointer;
     padding-right: 5px;
@@ -93,7 +112,7 @@ td{
 }
 
 .fa-plus-circle:hover {
-    color: rgb(250, 125, 125);
+    color: rgb(129, 246, 116);
     transition: 0.5s;
 }
 
@@ -143,6 +162,10 @@ td{
                                 <div class="card__header">
                                     <h2 class="text-center p-3 titulo">Carrinho</h2>
                                 </div>
+                                <div class="d-flex justify-content-start mt-4">
+                                    <button type="submit" class="btn00 ml-3"><a class="text-white"
+                                                href="esvaziar.php?codigo=$codigo" target="_top">Esvaziar</a></button>
+                                </div>
                                 <div class="card__body">
                                     <div class="col-lg-12">
 
@@ -155,14 +178,18 @@ td{
                                                 <th scope="col">Valor</th>
                                                 <th scope="col">Quantidade</th>
                                                 <th scope="col">Total Item</th>
-                                                <th scope="col">Adicinar</th>
-                                                <th scope="col">Remover</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
                                                 </tr>
                                             </thead>
                                             <?php listarCesta(); ?>
-                                        </table>    
-                                        <button type="submit" class="btn00 m-5 aliign-center"><a class="text-white"
-                                                    href="esvaziar.php?codigo=$codigo" target="_top">Esvaziar</a></button>
+                                        </table>  
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <button type="submit" class="btn01 ml-5 m-5"><a class="text-white"
+                                                        href="finalizarPedido.php?codigo=$codigo" target="_top">Finalizar</a></button>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +222,7 @@ td{
     function listarCesta(){
         $sessionId = session_id();
 
-        $conexao = new mysqli("localhost", "root", "root", "produto"); 
+        $conexao = new mysqli("localhost", "root", "root", "bdsite"); 
 
         $sql = "select p.codigo, p.titulo, c.qtd, p.valor, p.valor*c.qtd as total from 
         produto p inner join cesta c on p.codigo=c.codigoProduto where c.sessionId='$sessionId' order by p.titulo";
@@ -208,21 +235,29 @@ td{
             $valor = $reg["valor"];
             $qtd = $reg["qtd"];
             $total  = $reg["total"];
-            echo "<tr class='align-self-center'>
-                    <th>$codigo</th>
-                    <th><img src='../../assets/img/$codigo.jpg' class='img-fluid produto'></th>
-                    <th>$titulo</th>
-                    <th>R$ $valor</th>
-                    <th>$qtd</th>
-                    <th>R$ $total</th>
-                    <th><a href='adicionar.php?codigo=$codigo'><i class='fa fa-plus-circle' aria-hidden='true'></i></a></th>
-                    <th><a href='remover.php?codigo=$codigo'><i class='fa fa-times-circle' aria-hidden='true'></i></a></th>
-                </tr>";
+            echo "<div class='container justify-content d-flex '>
+                    <div class='row'>
+                        <div class='col-lg-12'>
+                            <tr class='align-self-center'>
+                            <th>$codigo</th>
+                            <th><img src='../../assets/img/$codigo.jpg' class='img-fluid produto'></th>
+                            <th>$titulo</th>
+                            <th>R$ $valor</th>
+                            <th>$qtd</th>
+                            <th>R$ $total</th>
+                            <th><a href='diminuir.php?codigo=$codigo'><i class='fa fa-minus-circle' aria-hidden='true'></i></a></th>
+                            <th><a href='adicionar.php?codigo=$codigo'><i class='fa fa-plus-circle' aria-hidden='true'></i></a></th>
+                            <th><a href='remover.php?codigo=$codigo'><i class='fa fa-times-circle' aria-hidden='true'></i></a></th>
+                            </tr>
+                        </div>
+                    </div>
+                </div>";
             $totalPedido = $totalPedido + $total;
         }
         mysqli_close($conexao);
         echo "<tr class='align-self-center'>
-                <tr><td colspan='8'><b>Total Pedido: R$ $totalPedido</b></td></tr>
+                <tr><td colspan='9'><b>Total Pedido: R$ $totalPedido</b></td></tr>
             </tr>";
     }
 ?>
+<?php ob_end_flush(); ?>
