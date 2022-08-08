@@ -164,18 +164,6 @@ let senhaOk = false
 let confirSenhaOk = false
 let cpfOk =  false
 
-/*function validaNome() {
-    let txtNome = document.querySelector("#txtNome")
-    if (nome.value.length < 3 && sobrenome.value.length < 3) { //length = tamanho
-        txtNome.innerHTML = "Nome Inválido"
-        txtNome.style.color = "red"
-    } else {
-        txtNome.innerHTML = "Nome Válido"
-        txtNome.style.color = "green"
-        nomeOk = true
-    }
-}*/
-
 function validaEmail() {
     let txtEmail = document.querySelector("#txtEmail")
     if (email.value.indexOf("@") && email.value.indexOf(".com") == -1) {

@@ -264,22 +264,23 @@ function enviarEsqueciSenha() {
             $email = $_POST["email"];
 
             $conexao = new mysqli("localhost", "root", "root", "bdsite"); //conexão com o BD
-    
+
             $sql = "select * from cliente where email='$email'";
-            
+
             $resultado = mysqli_query($conexao, $sql); //será retornado um resultado
-    
+
+            //configurar os arquivos sendmail.ini e php.ini no xampp com as informações do e-mail.
             if($reg = mysqli_fetch_array($resultado)){//se passar quer dizer que encontrou o e-mail   
                 $email = $_POST["email"];
                 $body = "Solicitação de Reset de Senha";
-                $headers .= "From: Equipe Fatec <equipe.fatec.ipiranga@gmail.com>" . "\r\n";                       
+                $headers  = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type: text/html; harset=UTF-8" . "\r\n";
+                $headers .= "From: Equipe Fatec <equipe.fatec.ipiranga@outlook.com>" . "\r\n";                       
                 if(mail($email, $body, $headers)){
-                    echo "<script>alert('Email enviado com sucesso!');</script>";
+                    echo "<script lang='javascript'>alert('Email enviado com sucesso!')</script>";
                 }
-                
-    
             }else{ //se não consegue extrair um registro irá cair direto no else  
-                echo "<script>alert('Email inválido!');</script>";
+                echo "Email inválido!";
             }
     
             mysqli_close($conexao); //desconectar
