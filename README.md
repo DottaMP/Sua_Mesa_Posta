@@ -11,28 +11,28 @@
 ## Screenshots
 
 ### Home
-![Página da Home](https://imgur.com/9wklM7W.png "Home")
+![Página da Home](https://imgur.com/o0YUY9i.png "Home")
 
 ### Vitrine
-![Página da Vitrine](https://imgur.com/1IOLQfG.png "Vitrine")
+![Página da Vitrine](https://imgur.com/GXqPEeN.png "Vitrine")
 
 ### Produto Detalhe
-![Página do Produto Detalhe](https://imgur.com/51rLHkW.png "Produto Detalhe")
+![Página do Produto Detalhe](https://imgur.com/XCGK6RU.png "Produto Detalhe")
 
 ### Cadastro
-![Página do Cadastro](https://imgur.com/e0xqnDJ.png "Cadastro")
+![Página do Cadastro](https://imgur.com/ml3iNQU.png "Cadastro")
 
 ### Login
-![Página do Login](https://imgur.com/2Fmryd2.png "Login")
+![Página do Login](https://imgur.com/nIBfjiA.png "Login")
 
-### Carrinho
-![Página do Carrinho](https://imgur.com/vQv9CJu.png "Carrinho")
+### Esqueci minha senha
+![Página do Esqueci Minha Senha](https://imgur.com/O4Gy3u6.png "Esqueci Minha Senha")
 
-### Finalizar Pedido
-![Página de Finalizar Pedido](https://imgur.com/4yqQI2u.png "Finalizar Pedido")
+### Carrinho e Finalizar Pedido
+![Página do Carrinho e Finalizar Pedido](https://imgur.com/tuoe6io.png "Carrinho e Finalizar Pedido")
 
-### Permissões do admin
-![Página do admin](https://imgur.com/21mQdfH.png "Admin")
+### Acesso admin
+![Página do admin](https://imgur.com/JYQjC4p.png "Admin")
     
 #
 
